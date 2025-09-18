@@ -45,7 +45,8 @@ This repository contains the **lite implementation** of the 5FREΞ recursion fra
 
 For serious inquiries, licensing discussions, or early partnership, contact:
 
-> stevenbrittdev \[@] protonmail \[dot] com
+>  5FREΞ stevenbrittdev khaoticgamingltd@gmail.com
+
 
 ---
 
