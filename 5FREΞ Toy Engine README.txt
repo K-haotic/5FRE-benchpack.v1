@@ -84,7 +84,7 @@ run_inline("not happy")
 
 * This file is **evaluation/demo only** — do not copy, repackage, or reuse in any system without written permission.
 * Covered under the 5FREΞ system patent disclosures (2025).
-* For licensing discussions: stevenbrittdev \[@] protonmail \[dot] com
+* For licensing discussions: stevenbrittdev and 5FREΞ dev teams---> khaoticgamingltd@gmail.com
 
 ---
 
