@@ -7,7 +7,7 @@ import random
 
 def generate_random_bits_raw(count: int, r: float = 3.9, seed: float | None = None):
     """
-    Produce 'count' raw bits from a logistic map in the chaotic regime.
+    Produce `count` raw bits from a logistic map in the chaotic regime.
     This is PRE-whitening / PRE-Von Neumann.
     """
     rnd = random.Random()
@@ -57,7 +57,7 @@ def generate_random_bits(count: int, r: float = 3.9, seed: float | None = None):
 
 def generate_target_bits(target_bits: int, r: float = 3.9, seed: float | None = None, max_iters: int | None = None):
     """
-    Generate AT LEAST 'target_bits' corrected bits (keeps iterating until enough).
+    Generate AT LEAST `target_bits` corrected bits (keeps iterating until enough).
     Useful because Von Neumann discards an unknown fraction of bits.
 
     max_iters guards against infinite loops (defaults to 50x target raw cycles).
@@ -72,10 +72,7 @@ def generate_target_bits(target_bits: int, r: float = 3.9, seed: float | None = 
 
     out = []
     append_out = out.append
-    produced = 0
-    # Choose a chunk size to amortize overhead
     chunk_raw = max(50_000, target_bits * 5)
-    # sanity max
     if max_iters is None:
         max_iters = 50
 
@@ -117,7 +114,6 @@ def _basic_stats(bits):
     ones = sum(bits)
     zeros = n - ones
     ones_frac = (ones / n) if n else 0.0
-    # runs + flip rate + longest run
     if n < 2:
         return {
             "n": n, "ones": ones, "zeros": zeros, "ones_frac": ones_frac,
@@ -160,10 +156,9 @@ if __name__ == "__main__":
     print(f"[ToyRNG] Stats: n={st['n']} ones={st['ones']} zeros={st['zeros']} ones%={st['ones_frac']*100:.2f}%")
     print(f"[ToyRNG] runs={st['runs']} longest_run={st['longest_run']} flip_rate={st['flip_rate']*100:.2f}%")
 
-    # Optional: simple plot if matplotlib is available (no colors specified)
+    # Optional: simple plot if matplotlib is available
     try:
         import matplotlib.pyplot as plt
-        # cumulative random walk of first 10k bits
         walk = []
         cum = 0
         for b in bits[:10_000]:
@@ -176,6 +171,5 @@ if __name__ == "__main__":
         plt.tight_layout()
         plt.savefig("toy_rng_plot.png")
         print("[ToyRNG] Saved plot as toy_rng_plot.png")
-        # plt.show()  # enable if running interactively
     except Exception as e:
         print(f"[ToyRNG] Plotting skipped: {e}")
