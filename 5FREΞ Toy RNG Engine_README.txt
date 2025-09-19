@@ -5,21 +5,19 @@ by Steven Ray Britt aka Mr. Khaotic & The 5FREΞ Research Team
 🚀 What Is This?
 
 The Toy RNG Engine is a chaos-based random number generator.
-It’s simple, fast, and meant for education, research, and evaluation only.
+It’s tiny, fast, and made for education, research, and evaluation only.
 
-This isn’t a cryptographic RNG — it’s a way to see chaos in action and test if raw math can produce randomness.
+This is not a cryptographic RNG — it’s a way to see chaos in action and check if randomness can emerge straight from math.
 
 🧩 How It Works
 
-🌀 Starts with a chaotic logistic map (r = 3.9)
+🌀 Generates bits from a logistic map (r = 3.9)
 
-🔀 Turns map outputs into 0s and 1s
+🔀 Whitens the bits with an XOR step
 
-✨ Whitens the bits by XOR-ing neighbors
+🧹 Runs a Von Neumann corrector to remove bias
 
-🧹 Von Neumann corrector removes bias
-
-📂 Saves raw output (toy_rng_output.bin) + 🖼️ plots (toy_rng_plot.png)
+📂 Outputs both raw binary and plots for inspection
 
 🛠️ How To Run
 python ToyRNGEngine.py
@@ -27,34 +25,48 @@ python ToyRNGEngine.py
 
 You’ll get:
 
-toy_rng_output.bin → random bitstream file
+🗂️ toy_rng_output.bin → random bitstream file
 
-toy_rng_plot.png → random walk + histogram
+🖼️ toy_rng_plot.png → random walk plot (first 10k bits)
 
-📊 Benchmarks
+📊 Test Results (100k corrected bits)
 
-Typical run on a laptop:
+We ran the engine and here’s what came out:
 
-⚡ 200k bits generated in < 1 second
+⏱️ Runtime: 0.216 s
 
-✅ ~50% ones / ~50% zeros (balanced)
+1️⃣ Ones: 50,185 (50.185%)
 
-🔀 Flip rate ~49–51%
+0️⃣ Zeros: 49,815 (49.815%)
 
-🏃 Runs test passes, no obvious bias
+🔬 Monobit p-value: 0.242 (balanced)
 
-🔬 Verify It Yourself
+🔀 Flip rate: 50.98% (ideal ≈ 50%)
 
-Want to check if it’s really random?
-Take the .bin file and run it through:
+🏃 Runs: 50,985
+
+📏 Longest run: 17 (reasonable for 100k bits)
+
+📉 Autocorrelation: lag1 = −0.0197, lag2 = +0.0476 (near 0)
+
+👉 Looks healthy for a toy chaos RNG!
+
+🔬 How To Use the .bin File
+
+The toy_rng_output.bin file is a packed bitstream.
+Each 8 bits are stored as a byte.
+
+You can:
+
+Load it into Python and unpack bits for experiments
+
+Run it through randomness test suites:
 
 🧪 NIST STS
 
 🎯 Dieharder
 
 🚦 PractRand
-
-You don’t have to just trust us — you can test it.
 
 📜 License
 5FREΞ Toy RNG Engine — Demonstration / Evaluation License
@@ -73,16 +85,23 @@ with the 5FREΞ Research Team
 
 ❌ Not cryptographically secure
 
-✅ Great for demos, learning, chaos research
+✅ Good for demos, research, and chaos exploration
 
 🕶️ Use at your own risk
 
 🤝 Support Us
 
-This is open research, built free of charge.
-But projects like this need 💸 funding, 🧠 collaborators, and 🔗 partnerships.
+This project is free of charge and driven by independent research.
+But to grow we need:
 
-👉 If you’re an investor, researcher, developer, or just curious, reach out and support the work.
-Together, we can push 5FREΞ to the next level.
+💸 Funding
 
-✨ In short: The Toy RNG Engine is our hello world of chaos. Run it, break it, study it — and if you see the vision, join us
+🧠 Research partners
+
+🔗 Collaborators
+
+👉 If you’re an investor, researcher, or builder, join us.
+Support the 5FREΞ Research Team and help push chaos research further.
+
+✨ In short: The Toy RNG Engine is our hello world of chaos.
+Run it, test it, and if you see the vision — support the mission
